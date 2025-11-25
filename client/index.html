@@ -4,135 +4,1086 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawKind - Adopt, Love, and Care</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --beige: #f9f3e9;
+            --mint-green: #d4f0e9;
+            --warm-orange: #ffb380;
+            --soft-pink: #ffd6cc;
+            --text-dark: #5a5a5a;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--beige);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--mint-green), var(--soft-pink));
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--warm-orange);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--warm-orange);
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                        url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--warm-orange);
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 179, 128, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 179, 128, 0.6);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--warm-orange);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Adoption Cards */
+        .adoption-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pet-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .pet-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .pet-info {
+            padding: 1.5rem;
+        }
+
+        .pet-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pet-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .adopt-button {
+            display: block;
+            width: 100%;
+            background-color: var(--mint-green);
+            color: var(--text-dark);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .adopt-button:hover {
+            background-color: var(--warm-orange);
+            color: var(--text-light);
+        }
+
+        /* Care Tips Carousel */
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 2.5rem;
+            background-color: white;
+            text-align: center;
+        }
+
+        .carousel-item i {
+            font-size: 3rem;
+            color: var(--warm-orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .carousel-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-item p {
+            line-height: 1.6;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--mint-green);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--warm-orange);
+            transform: scale(1.2);
+        }
+
+        /* Success Stories */
+        .success-stories {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scrollbar-width: thin;
+        }
+
+        .success-story {
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .story-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 1.5rem;
+        }
+
+        .story-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-content p {
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .story-author {
+            font-weight: 600;
+            color: var(--warm-orange);
+        }
+
+        /* Map Section */
+        .map-section {
+            background-color: var(--mint-green);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .map-placeholder {
+            height: 400px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            color: var(--warm-orange);
+            margin-bottom: 1rem;
+        }
+
+        .map-placeholder p {
+            font-size: 1.1rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--warm-orange);
+            color: var(--text-light);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-button:hover {
+            background-color: var(--mint-green);
+            color: var(--text-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+            color: var(--warm-orange);
+        }
+
+        .footer-logo h2 {
+            font-size: 1.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--warm-orange);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--warm-orange);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Floating Elements */
+        .floating-paw {
+            position: fixed;
+            font-size: 1.5rem;
+            color: var(--warm-orange);
+            opacity: 0.7;
+            z-index: 10;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Hidden Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-bottle {
+            width: 60px;
+            height: 80px;
+            background-color: var(--mint-green);
+            border-radius: 30px 30px 10px 10px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chatbot-bottle:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .chatbot-bottle:before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            background-color: var(--warm-orange);
+            top: -5px;
+            border-radius: 5px;
+        }
+
+        .paw-prints {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .paw-print {
+            font-size: 1.2rem;
+            color: var(--warm-orange);
+            position: absolute;
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 100px;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background-color: var(--mint-green);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-header i {
+            font-size: 1.5rem;
+            color: var(--warm-orange);
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            padding: 0.8rem;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .bot-message {
+            background-color: var(--mint-green);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background-color: var(--warm-orange);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .chatbot-input button {
+            background-color: var(--warm-orange);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .adoption-cards {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .chatbot-window {
+                width: 280px;
+                height: 350px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <nav>
+        <div class="header-container">
             <div class="logo">
                 <i class="fas fa-paw"></i>
-                <span>PawKind</span>
+                <h1>PawKind</h1>
             </div>
-            <div class="nav-links">
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#adoption">Adoption</a></li>
+                    <li><a href="#care-tips">Care Tips</a></li>
+                    <li><a href="#success-stories">Success Stories</a></li>
+                    <li><a href="#shelters">Find Shelters</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Adopt, Love, and Care</h2>
+            <p>At PawKind, we believe every animal deserves a loving home. Join us in our mission to provide shelter, care, and forever families for pets in need.</p>
+            <a href="#adoption" class="cta-button">Find Your New Best Friend</a>
+        </div>
+    </section>
+
+    <!-- Adoption Center -->
+    <section id="adoption">
+        <div class="section-title">
+            <h2>Adoption Center</h2>
+        </div>
+        <div class="adoption-cards">
+            <!-- Pet Card 1 -->
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=662&q=80" alt="Golden Retriever" class="pet-image">
+                <div class="pet-info">
+                    <h3>Buddy</h3>
+                    <p>Buddy is a friendly 2-year-old Golden Retriever who loves playing fetch and cuddling. He's great with kids and other pets.</p>
+                    <button class="adopt-button">Adopt Me</button>
+                </div>
+            </div>
+            
+            <!-- Pet Card 2 -->
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=843&q=80" alt="Cat" class="pet-image">
+                <div class="pet-info">
+                    <h3>Luna</h3>
+                    <p>Luna is a gentle 3-year-old tabby cat who enjoys sunny spots and quiet evenings. She would be perfect for a calm home.</p>
+                    <button class="adopt-button">Adopt Me</button>
+                </div>
+            </div>
+            
+            <!-- Pet Card 3 -->
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Beagle" class="pet-image">
+                <div class="pet-info">
+                    <h3>Max</h3>
+                    <p>Max is an energetic 1-year-old Beagle who loves exploring and going on adventures. He's looking for an active family.</p>
+                    <button class="adopt-button">Adopt Me</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Care Tips -->
+    <section id="care-tips">
+        <div class="section-title">
+            <h2>Care Tips</h2>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel">
+                <!-- Care Tip 1 -->
+                <div class="carousel-item">
+                    <i class="fas fa-bone"></i>
+                    <h3>Nutrition Matters</h3>
+                    <p>Provide a balanced diet appropriate for your pet's age, size, and health needs. Always ensure fresh water is available.</p>
+                </div>
+                
+                <!-- Care Tip 2 -->
+                <div class="carousel-item">
+                    <i class="fas fa-stethoscope"></i>
+                    <h3>Regular Vet Visits</h3>
+                    <p>Schedule annual check-ups to keep your pet healthy. Don't forget vaccinations and preventive treatments.</p>
+                </div>
+                
+                <!-- Care Tip 3 -->
+                <div class="carousel-item">
+                    <i class="fas fa-home"></i>
+                    <h3>Safe Environment</h3>
+                    <p>Create a safe, comfortable space for your pet. Remove hazards and provide toys for mental stimulation.</p>
+                </div>
+                
+                <!-- Care Tip 4 -->
+                <div class="carousel-item">
+                    <i class="fas fa-heart"></i>
+                    <h3>Love and Attention</h3>
+                    <p>Spend quality time with your pet daily. Positive reinforcement and affection strengthen your bond.</p>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <div class="carousel-dot active" data-index="0"></div>
+                <div class="carousel-dot" data-index="1"></div>
+                <div class="carousel-dot" data-index="2"></div>
+                <div class="carousel-dot" data-index="3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section id="success-stories">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+        </div>
+        <div class="success-stories">
+            <!-- Story 1 -->
+            <div class="success-story">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Happy dog with family" class="story-image">
+                <div class="story-content">
+                    <h3>From Shelter to Home</h3>
+                    <p>"We adopted Bella six months ago, and she's brought so much joy to our family. She's the perfect addition to our home!"</p>
+                    <div class="story-author">- The Johnson Family</div>
+                </div>
+            </div>
+            
+            <!-- Story 2 -->
+            <div class="success-story">
+                <img src="https://images.unsplash.com/photo-1577023311546-cdc07a8453d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Cat in new home" class="story-image">
+                <div class="story-content">
+                    <h3>A Purrfect Match</h3>
+                    <p>"Whiskers was shy at first, but now he's the king of our household. We can't imagine life without him."</p>
+                    <div class="story-author">- Sarah M.</div>
+                </div>
+            </div>
+            
+            <!-- Story 3 -->
+            <div class="success-story">
+                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Dog playing in park" class="story-image">
+                <div class="story-content">
+                    <h3>Second Chance at Happiness</h3>
+                    <p>"Rex had a difficult past, but with patience and love, he's become the most loyal companion. Adopting him was the best decision."</p>
+                    <div class="story-author">- Michael T.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Nearby Shelters -->
+    <section id="shelters">
+        <div class="section-title">
+            <h2>Find Nearby Shelters</h2>
+        </div>
+        <div class="map-section">
+            <p>Use our interactive map to find animal shelters and rescue centers near you. Together, we can help every animal find a loving home.</p>
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Interactive Map - Find Shelters Near You</p>
+                <p>(Google Maps integration would appear here)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact">
+        <div class="section-title">
+            <h2>Contact / Join Us</h2>
+        </div>
+        <div class="contact-form">
+            <form id="volunteer-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="interest">I'm interested in:</label>
+                    <select id="interest" name="interest">
+                        <option value="volunteering">Volunteering</option>
+                        <option value="donating">Donating</option>
+                        <option value="adopting">Adopting</option>
+                        <option value="fostering">Fostering</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us how you'd like to help..."></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-paw"></i>
+                <h2>PawKind</h2>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
                 <a href="#adoption">Adoption</a>
                 <a href="#care-tips">Care Tips</a>
                 <a href="#success-stories">Success Stories</a>
                 <a href="#shelters">Find Shelters</a>
                 <a href="#contact">Contact</a>
             </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Adopt, Love, and Care</h1>
-        <p>At PawKind, we believe every animal deserves a loving home. Join us in our mission to provide shelter, care, and forever families for pets in need.</p>
-        <a href="#adoption" class="cta-button">Find Your New Best Friend</a>
-    </section>
-
-    <section id="adoption">
-        <h2 class="section-title">Adoption Center</h2>
-        <div class="adoption-cards" id="adoptionCards">
-            <!-- Dynamic content -->
-        </div>
-    </section>
-
-    <section id="care-tips">
-        <h2 class="section-title">Care Tips</h2>
-        <div class="carousel-container">
-            <div class="carousel" id="careTipsCarousel">
-                <!-- Dynamic content -->
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
+            <p class="copyright">© 2023 PawKind. All rights reserved. Made with <i class="fas fa-heart" style="color: var(--warm-orange);"></i> for animals.</p>
         </div>
-        <div class="carousel-nav" id="carouselNav">
-            <!-- Dynamic content -->
-        </div>
-    </section>
-
-    <section id="success-stories">
-        <h2 class="section-title">Success Stories</h2>
-        <div class="success-stories" id="successStories">
-            <!-- Dynamic content -->
-        </div>
-    </section>
-
-    <section id="shelters">
-        <h2 class="section-title">Find Nearby Shelters</h2>
-        <div class="map-container">
-            <div id="map"></div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Contact/Join Us</h2>
-        <div class="contact-form">
-            <form id="volunteer-form">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="interest">I'm interested in:</label>
-                    <select id="interest">
-                        <option value="volunteer">Volunteering</option>
-                        <option value="donate">Donating</option>
-                        <option value="adopt">Adopting</option>
-                        <option value="foster">Fostering</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="4"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <div class="logo">
-            <i class="fas fa-paw"></i>
-            <span>PawKind</span>
-        </div>
-        <p>Dedicated to animal kindness, pet adoption, and stray animal welfare.</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <p>&copy; 2023 PawKind. All rights reserved.</p>
     </footer>
 
-    <!-- Mystery Element - PawBot -->
-    <div class="paw-bottle" id="pawBottle">
-        <div class="paw-prints">
-            <div class="paw-print"></div>
-            <div class="paw-print"></div>
+    <!-- Hidden Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-bottle" id="chatbot-bottle">
+            <div class="paw-prints">
+                <i class="fas fa-paw paw-print" style="top: 15px; left: 15px;"></i>
+                <i class="fas fa-paw paw-print" style="bottom: 15px; right: 15px;"></i>
+            </div>
+        </div>
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <i class="fas fa-robot"></i>
+                <h3>PawBot - Your Pet Care Buddy</h3>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot-message">
+                    Woof! I'm PawBot, your pet care buddy! How can I help you today?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Ask me about pet care...">
+                <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+            </div>
         </div>
     </div>
 
-    <div class="pawbot-chat" id="pawbotChat">
-        <div class="chat-header">
-            <i class="fas fa-robot"></i>
-            <span>PawBot</span>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot-message">Woof! I'm PawBot, your pet care buddy! How can I help you today?</div>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Ask me about pet care...">
-            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+    <!-- Floating Paw Icons -->
+    <div class="floating-paw" style="top: 20%; left: 5%; animation-delay: 0s;"></div>
+    <div class="floating-paw" style="top: 60%; left: 10%; animation-delay: 1s;"></div>
+    <div class="floating-paw" style="top: 40%; right: 8%; animation-delay: 2s;"></div>
+    <div class="floating-paw" style="top: 80%; right: 5%; animation-delay: 3s;"></div>
 
-    <div class="floating-paws" id="floatingPaws"></div>
-
-    <script src="script.js"></script>
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentIndex = 0;
+            
+            // Initialize carousel
+            function showSlide(index) {
+                carousel.style.transform = `translateX(-${index * 100}%)`;
+                
+                // Update dots
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+                
+                currentIndex = index;
+            }
+            
+            // Dot click events
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    showSlide(index);
+                });
+            });
+            
+            // Auto-advance carousel
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % dots.length;
+                showSlide(currentIndex);
+            }, 5000);
+            
+            // Chatbot functionality
+            const chatbotBottle = document.getElementById('chatbot-bottle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const chatbotInput = document.getElementById('chatbot-input');
+            const sendMessageBtn = document.getElementById('send-message');
+            
+            let isChatbotOpen = false;
+            
+            // Toggle chatbot window
+            chatbotBottle.addEventListener('click', function() {
+                if (!isChatbotOpen) {
+                    chatbotWindow.style.display = 'flex';
+                    isChatbotOpen = true;
+                    
+                    // Greet with voice
+                    speakMessage("Woof! I'm PawBot, your pet care buddy! How can I help you today?");
+                } else {
+                    chatbotWindow.style.display = 'none';
+                    isChatbotOpen = false;
+                }
+            });
+            
+            // Send message function
+            function sendMessage() {
+                const message = chatbotInput.value.trim();
+                if (message === '') return;
+                
+                // Add user message
+                addMessage(message, 'user');
+                chatbotInput.value = '';
+                
+                // Generate bot response
+                setTimeout(() => {
+                    const response = generateResponse(message);
+                    addMessage(response, 'bot');
+                    speakMessage(response);
+                }, 1000);
+            }
+            
+            // Send message on button click or Enter key
+            sendMessageBtn.addEventListener('click', sendMessage);
+            chatbotInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Add message to chat
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+                messageDiv.textContent = text;
+                
+                chatbotMessages.appendChild(messageDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            // Text-to-speech function
+            function speakMessage(text) {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.9;
+                    utterance.pitch = 1.2;
+                    speechSynthesis.speak(utterance);
+                }
+            }
+            
+            // Generate bot responses
+            function generateResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                if (lowerMessage.includes('food') || lowerMessage.includes('feed') || lowerMessage.includes('diet')) {
+                    return "A balanced diet is essential for pets! Dogs need protein-rich food, while cats are obligate carnivores. Always provide fresh water and avoid foods like chocolate, grapes, and onions which are toxic to pets.";
+                } else if (lowerMessage.includes('exercise') || lowerMessage.includes('walk') || lowerMessage.includes('play')) {
+                    return "Regular exercise keeps pets healthy and happy! Dogs typically need 30 minutes to 2 hours of activity daily. Cats enjoy interactive toys and climbing structures. Adjust based on your pet's age, breed, and health.";
+                } else if (lowerMessage.includes('groom') || lowerMessage.includes('bath') || lowerMessage.includes('brush')) {
+                    return "Grooming needs vary by breed. Most dogs benefit from weekly brushing and baths every 4-6 weeks. Cats groom themselves but may need help with brushing, especially long-haired breeds. Don't forget nail trims!";
+                } else if (lowerMessage.includes('vet') || lowerMessage.includes('health') || lowerMessage.includes('sick')) {
+                    return "Annual vet check-ups are important for preventive care. Watch for signs of illness like changes in appetite, behavior, or energy levels. Keep vaccinations current and discuss parasite prevention with your vet.";
+                } else if (lowerMessage.includes('adopt') || lowerMessage.includes('shelter') || lowerMessage.includes('rescue')) {
+                    return "Adoption saves lives! Shelter pets make wonderful companions. Consider your lifestyle when choosing a pet - energy level, size, and grooming needs. Many shelters have trial periods to ensure it's a good match.";
+                } else if (lowerMessage.includes('train') || lowerMessage.includes('behavior') || lowerMessage.includes('obedience')) {
+                    return "Positive reinforcement training works best! Reward good behavior with treats and praise. Be patient and consistent. Puppy classes or obedience training can help socialize your pet and strengthen your bond.";
+                } else if (lowerMessage.includes('cat') || lowerMessage.includes('kitten')) {
+                    return "Cats need vertical space like cat trees, scratching posts, and hiding spots. Provide a litter box in a quiet location and clean it daily. Interactive play helps prevent behavior problems and keeps them mentally stimulated.";
+                } else if (lowerMessage.includes('dog') || lowerMessage.includes('puppy')) {
+                    return "Dogs thrive on routine and clear boundaries. Socialization with people and other dogs is important, especially during puppyhood. Crate training can help with house training and provide a safe space for your dog.";
+                } else if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+                    return "You're welcome! I'm always here to help with your pet care questions. Remember, a well-cared-for pet is a happy pet!";
+                } else {
+                    return "I'm PawBot, here to help with pet care questions! You can ask me about feeding, exercise, grooming, training, or anything else related to pet care. What would you like to know?";
+                }
+            }
+            
+            // Form submission
+            document.getElementById('volunteer-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your interest in PawKind! We will contact you soon.');
+                this.reset();
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a, .cta-button').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Add floating paw icons dynamically
+            function createFloatingPaws() {
+                const pawIcons = ['🐾', '❤️', '🐶', '🐱'];
+                
+                for (let i = 0; i < 8; i++) {
+                    const paw = document.createElement('div');
+                    paw.classList.add('floating-paw');
+                    paw.innerHTML = pawIcons[Math.floor(Math.random() * pawIcons.length)];
+                    
+                    paw.style.left = `${Math.random() * 90 + 5}%`;
+                    paw.style.top = `${Math.random() * 80 + 10}%`;
+                    paw.style.animationDelay = `${Math.random() * 5}s`;
+                    paw.style.fontSize = `${Math.random() * 1 + 1.2}rem`;
+                    
+                    document.body.appendChild(paw);
+                }
+            }
+            
+            createFloatingPaws();
+        });
+    </script>
 </body>
 </html>
