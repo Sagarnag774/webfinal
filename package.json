@@ -1,0 +1,15 @@
+{
+  "name": "pawkind",
+  "version": "1.0.0",
+  "description": "PawKind - Animal welfare platform",
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npx live-server --port=3001\"",
+    "start": "cd server && npm start",
+    "build": "echo 'Building client for Netlify'",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && echo 'No client dependencies'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

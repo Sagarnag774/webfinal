@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawKind - Adopt, Love, and Care</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <span>PawKind</span>
+            </div>
+            <div class="nav-links">
+                <a href="#adoption">Adoption</a>
+                <a href="#care-tips">Care Tips</a>
+                <a href="#success-stories">Success Stories</a>
+                <a href="#shelters">Find Shelters</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Adopt, Love, and Care</h1>
+        <p>At PawKind, we believe every animal deserves a loving home. Join us in our mission to provide shelter, care, and forever families for pets in need.</p>
+        <a href="#adoption" class="cta-button">Find Your New Best Friend</a>
+    </section>
+
+    <section id="adoption">
+        <h2 class="section-title">Adoption Center</h2>
+        <div class="adoption-cards" id="adoptionCards">
+            <!-- Dynamic content -->
+        </div>
+    </section>
+
+    <section id="care-tips">
+        <h2 class="section-title">Care Tips</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="careTipsCarousel">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+        <div class="carousel-nav" id="carouselNav">
+            <!-- Dynamic content -->
+        </div>
+    </section>
+
+    <section id="success-stories">
+        <h2 class="section-title">Success Stories</h2>
+        <div class="success-stories" id="successStories">
+            <!-- Dynamic content -->
+        </div>
+    </section>
+
+    <section id="shelters">
+        <h2 class="section-title">Find Nearby Shelters</h2>
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact/Join Us</h2>
+        <div class="contact-form">
+            <form id="volunteer-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="interest">I'm interested in:</label>
+                    <select id="interest">
+                        <option value="volunteer">Volunteering</option>
+                        <option value="donate">Donating</option>
+                        <option value="adopt">Adopting</option>
+                        <option value="foster">Fostering</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">
+            <i class="fas fa-paw"></i>
+            <span>PawKind</span>
+        </div>
+        <p>Dedicated to animal kindness, pet adoption, and stray animal welfare.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2023 PawKind. All rights reserved.</p>
+    </footer>
+
+    <!-- Mystery Element - PawBot -->
+    <div class="paw-bottle" id="pawBottle">
+        <div class="paw-prints">
+            <div class="paw-print"></div>
+            <div class="paw-print"></div>
+        </div>
+    </div>
+
+    <div class="pawbot-chat" id="pawbotChat">
+        <div class="chat-header">
+            <i class="fas fa-robot"></i>
+            <span>PawBot</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">Woof! I'm PawBot, your pet care buddy! How can I help you today?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Ask me about pet care...">
+            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <div class="floating-paws" id="floatingPaws"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
